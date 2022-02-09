@@ -1,6 +1,6 @@
 
 from tkinter import *
-
+#creating main menu frame
 class Glavni_meni(Frame):
 
     def __init__(self, master,controler):
@@ -28,7 +28,7 @@ class Glavni_meni(Frame):
 
         self.text=Text(self, width = 5, height = 1, wrap = WORD)
         self.text.grid(row=3, column=2,sticky="W")
-
+#the food frame
 class Hrana(Frame):
     def __init__(self, master,controler):
         Frame.__init__(self, master)
@@ -89,6 +89,8 @@ class Hrana(Frame):
         if self.svinjski_gulas.get():
             suma+=250
         return suma
+
+#drinks frame
 class Pice(Frame):
     def __init__(self, master,controler):
         Frame.__init__(self, master)
@@ -127,6 +129,7 @@ class Pice(Frame):
         Button(self,text= "Nazad", command=lambda :controler.show_frame(Glavni_meni)).grid(row=4, column=1, sticky="E")
 
     def suma(self):
+        #calculates sum of prices ordered
         suma=0
         if self.pivoZ.get():
                 suma += 200
@@ -142,6 +145,7 @@ class Pice(Frame):
                 suma += 180
         return suma
 class Dezerti(Frame):
+    #deserts frame
     def __init__(self, master, controler):
         Frame.__init__(self, master)
 
@@ -165,6 +169,7 @@ class Dezerti(Frame):
         Button(self,text= "Nazad", command=lambda :controler.show_frame(Hrana)).grid(row=4, column=0, sticky="W")
 
     def suma(self):
+        # calculates sum of prices ordered
         suma=0
         if self.torta.get():
             suma+=180
@@ -185,6 +190,7 @@ class Prozor(Tk):
         self.frames = {}
 
         for F in (Glavni_meni, Hrana, Pice, Dezerti):
+            #creating frames and asigning their master
             frame = F(container, self)
 
             self.frames[F] = frame
@@ -198,6 +204,7 @@ class Prozor(Tk):
         frame= self.frames[ime]
         frame.tkraise()
     def suma(self):
+        #calculating sum of all frames
         self.racun = 0
         for F in ( Hrana, Pice, Dezerti):
 
